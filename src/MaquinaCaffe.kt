@@ -3,7 +3,7 @@ sealed class EstadoCafe {
     data class ConLeche(val cantidadLeche: Int) : EstadoCafe()
     data class ConAzucar(val cantidadAzucar : Int) : EstadoCafe()
     data class conAzucarYLeche(val catidadLeche: Int, val cantidadAzucar: Int) :EstadoCafe()
-    data class Error(val message: String) : EstadoCafe()
+
 }
 
 class MaquinaCaffe{
