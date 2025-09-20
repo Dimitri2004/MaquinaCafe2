@@ -61,7 +61,7 @@ fun main(){
     val d = readlnOrNull()?.toBooleanStrict() ?:false
     if (d){
         println("Cuanto azucar quieres?:")
-        val cantidad= readLine()?.toIntOrNull() ?:0
+        val cantidad= readlnOrNull()?.toIntOrNull() ?:0
         maquina.agregarAzucar(cantidad)
     }
     maquina.mostrarEstado()
