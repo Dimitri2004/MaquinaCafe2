@@ -1,14 +1,15 @@
+import kotlin.math.absoluteValue
+
 sealed class EstadoCafe {
     object CafeSolo : EstadoCafe()
     data class ConLeche(val cantidadLeche: Int) : EstadoCafe()
     data class ConAzucar(val cantidadAzucar : Int) : EstadoCafe()
     data class conAzucarYLeche(val catidadLeche: Int, val cantidadAzucar: Int) :EstadoCafe()
-
+    data class mesageError(val error:String) : EstadoCafe()
 }
 
 class MaquinaCaffe{
  var estado: EstadoCafe =EstadoCafe.CafeSolo
-
 
     fun agregarLeche(cantidad : Int){
         estado = when(estado){
@@ -17,7 +18,7 @@ class MaquinaCaffe{
                 EstadoCafe.conAzucarYLeche(cantidad,azucar)
             }
 
-            else ->EstadoCafe.ConLeche(cantidad)
+            else ->EstadoCafe.ConLeche(cantidad.absoluteValue)
         }
     }
 
@@ -28,7 +29,7 @@ class MaquinaCaffe{
                 val leche =(estado as EstadoCafe.ConLeche).cantidadLeche
             EstadoCafe.conAzucarYLeche(leche, cucharadas)
         }
-            else -> EstadoCafe.ConAzucar(cucharadas)
+            else -> EstadoCafe.ConAzucar(cucharadas.absoluteValue)
         }
     }
 
@@ -45,7 +46,7 @@ class MaquinaCaffe{
                 println("Café con ${e.catidadLeche} ml de leche y ${e.cantidadAzucar} cucharadas de azúcar.")
             }
 
-            else -> {}
+            else -> {EstadoCafe.mesageError("Máquina averiada")}
         }
     }
 
@@ -55,8 +56,10 @@ fun main(){
     val maquina =MaquinaCaffe()
 
     maquina.mostrarEstado() // Café solo
-    maquina.agregarLeche(100)
+    maquina.agregarLeche(-5)
     maquina.mostrarEstado() // Café con leche
+    maquina.agregarAzucar(6)
+    maquina.mostrarEstado() // Café con azucar
     println("Qiere Azucar : true/false")//preguntar si lo quiere con azucar
     val d = readlnOrNull()?.toBooleanStrict() ?:false
     if (d){
