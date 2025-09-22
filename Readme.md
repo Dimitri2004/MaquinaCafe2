@@ -8,16 +8,22 @@ stateDiagram
     State "Estado de cafe con azucar" as State3
     State "Estado de cafe solo" as State1
     State "Estado de cafe con azucar y leche" as State4
+    State "Pedido" as [*]
+    
+[*]-->State1:Empieza
 
+State1 --> State2:Fabricando
 
-State1 --> State2:Accion
+State1--> State3:Fabricando
 
-State2 --> State3:Accion
+State1-->State4:Fabricando
 
+State2-->[*]:Entregando
 
-State3 -->State2:Accion terminada
+State3-->[*]:Entregando
 
-State3-->State4:Accion
+State4-->[*]:Entregando
+
 
 
 
