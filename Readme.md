@@ -14,9 +14,11 @@ stateDiagram
 
 State1 --> State2:Fabricando
 
-State1--> State3:Fabricando
+State1 --> State3:Fabricando
 
-State1-->State4:Fabricando
+State1 --> State4:Fabricando
+
+State4 --> State2:Cambiando
 
 State2-->[*]:Entregando
 
@@ -24,8 +26,4 @@ State3-->[*]:Entregando
 
 State4-->[*]:Entregando
 
-
-
-
-    
 ```
