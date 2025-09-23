@@ -8,6 +8,9 @@ sealed class EstadoCafe {
     data class mesageError(val error:String) : EstadoCafe()
 }
 
+/**
+ * @param
+ */
 class MaquinaCaffe{
  var estado: EstadoCafe =EstadoCafe.CafeSolo
 
@@ -21,6 +24,7 @@ class MaquinaCaffe{
             else ->EstadoCafe.ConLeche(cantidad.absoluteValue)
         }
     }
+
 
     fun agregarAzucar(cucharadas: Int){
 
@@ -56,7 +60,7 @@ fun main(){
     val maquina =MaquinaCaffe()
 
     maquina.mostrarEstado() // Café solo
-    maquina.agregarLeche(-5)
+    maquina.agregarLeche(5)
     maquina.mostrarEstado() // Café con leche
     maquina.agregarAzucar(6)
     maquina.mostrarEstado() // Café con azucar
@@ -65,7 +69,12 @@ fun main(){
     if (d){
         println("Cuanto azucar quieres?:")
         val cantidad= readlnOrNull()?.toIntOrNull() ?:0
-        maquina.agregarAzucar(cantidad)
+        while (cantidad<=0 ){
+            println("Cuanto azucar quieres?:")
+            val cantidad2= readlnOrNull()?.toIntOrNull() ?:0
+            maquina.agregarAzucar(cantidad2)
+            break
+        }
     }
     maquina.mostrarEstado()
     maquina.reiniciar()
